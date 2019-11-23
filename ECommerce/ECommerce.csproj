@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -89,18 +95,111 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Management\Assets\css\bootstrap.css" />
+    <Content Include="Areas\Management\Assets\css\demo-page.css" />
+    <Content Include="Areas\Management\Assets\css\examples.css" />
+    <Content Include="Areas\Management\Assets\css\font-awesome.css" />
+    <Content Include="Areas\Management\Assets\css\geochart.css" />
+    <Content Include="Areas\Management\Assets\css\hover.css" />
+    <Content Include="Areas\Management\Assets\css\magnific-popup.css" />
+    <Content Include="Areas\Management\Assets\css\style.css" />
+    <Content Include="Areas\Management\Assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Management\Assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Management\Assets\images\1.jpg" />
+    <Content Include="Areas\Management\Assets\images\404.png" />
+    <Content Include="Areas\Management\Assets\images\b3.png" />
+    <Content Include="Areas\Management\Assets\images\climate.jpg" />
+    <Content Include="Areas\Management\Assets\images\close.png" />
+    <Content Include="Areas\Management\Assets\images\ftr-icons.png" />
+    <Content Include="Areas\Management\Assets\images\icon.png" />
+    <Content Include="Areas\Management\Assets\images\login.jpg" />
+    <Content Include="Areas\Management\Assets\images\mess.png" />
+    <Content Include="Areas\Management\Assets\images\next.png" />
+    <Content Include="Areas\Management\Assets\images\p1.png" />
+    <Content Include="Areas\Management\Assets\images\p2.png" />
+    <Content Include="Areas\Management\Assets\images\p3.png" />
+    <Content Include="Areas\Management\Assets\images\p4.png" />
+    <Content Include="Areas\Management\Assets\images\p5.png" />
+    <Content Include="Areas\Management\Assets\images\p6.png" />
+    <Content Include="Areas\Management\Assets\images\p7.png" />
+    <Content Include="Areas\Management\Assets\images\p8.png" />
+    <Content Include="Areas\Management\Assets\images\prev.png" />
+    <Content Include="Areas\Management\Assets\images\pro1.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro10.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro12.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro2.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro3.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro4.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro5.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro6.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro7.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro8.jpg" />
+    <Content Include="Areas\Management\Assets\images\pro9.jpg" />
+    <Content Include="Areas\Management\Assets\images\reg.png" />
+    <Content Include="Areas\Management\Assets\images\search.png" />
+    <Content Include="Areas\Management\Assets\images\shoppy.jpg" />
+    <Content Include="Areas\Management\Assets\images\tick.png" />
+    <Content Include="Areas\Management\Assets\images\visit.png" />
+    <Content Include="Areas\Management\Assets\js\bars.js" />
+    <Content Include="Areas\Management\Assets\js\bootstrap.js" />
+    <Content Include="Areas\Management\Assets\js\Chart.min.js" />
+    <Content Include="Areas\Management\Assets\js\chartinator.js" />
+    <Content Include="Areas\Management\Assets\js\gmaps.js" />
+    <Content Include="Areas\Management\Assets\js\jquery-2.1.1.min.js" />
+    <Content Include="Areas\Management\Assets\js\jquery.magnific-popup.js" />
+    <Content Include="Areas\Management\Assets\js\jquery.nicescroll.js" />
+    <Content Include="Areas\Management\Assets\js\modernizr.min.js" />
+    <Content Include="Areas\Management\Assets\js\nivo-lightbox.min.js" />
+    <Content Include="Areas\Management\Assets\js\scripts.js" />
+    <Content Include="Areas\Management\Assets\js\skycons.js" />
+    <Content Include="Areas\Management\Views\Template\404.html" />
+    <Content Include="Areas\Management\Views\Template\blank.html" />
+    <Content Include="Areas\Management\Views\Template\buttons.html" />
+    <Content Include="Areas\Management\Views\Template\charts.html" />
+    <Content Include="Areas\Management\Views\Template\grids.html" />
+    <Content Include="Areas\Management\Views\Template\icons.html" />
+    <Content Include="Areas\Management\Views\Template\inbox-details.html" />
+    <Content Include="Areas\Management\Views\Template\inbox.html" />
+    <Content Include="Areas\Management\Views\Template\index.html" />
+    <Content Include="Areas\Management\Views\Template\login.html" />
+    <Content Include="Areas\Management\Views\Template\maps.html" />
+    <Content Include="Areas\Management\Views\Template\portlet.html" />
+    <Content Include="Areas\Management\Views\Template\price.html" />
+    <Content Include="Areas\Management\Views\Template\product.html" />
+    <Content Include="Areas\Management\Views\Template\signup.html" />
+    <Content Include="Areas\Management\Views\Template\typography.html" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
+    <Compile Include="Areas\Management\Models\Context\ApplicationDbContext.cs" />
+    <Compile Include="Areas\Management\Models\Entities\Brand.cs" />
+    <Compile Include="Areas\Management\Models\Entities\Category.cs" />
+    <Compile Include="Areas\Management\Models\Interface\BaseEntity.cs" />
+    <Compile Include="Areas\Management\Models\Interface\IRepository.cs" />
+    <Compile Include="Areas\Management\Models\Repositories\BrandRepository.cs" />
+    <Compile Include="Areas\Management\Models\Repositories\CategoryRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Areas\Management\Views\web.config" />
+    <Content Include="Areas\Management\Assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Management\Assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Management\Assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Management\Assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Management\Assets\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Management\Assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Management\Assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Management\Assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Management\Assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Management\Views\Shared\Layout.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -111,6 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Management\Controllers\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
