@@ -16,5 +16,7 @@ namespace ECommerce.Areas.Management.Models.Context
         // Tables
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Brand> Brand { get; set; }
+        public virtual DbSet<Model> Model { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
     }
 }

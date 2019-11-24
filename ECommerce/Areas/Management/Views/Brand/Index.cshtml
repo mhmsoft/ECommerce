@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ECommerce.Areas.Management.Models.Entities.Brand>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
+}
+<div class="col-md-10 compose">
+    <div class="inbox-details-default">
+
+        <div class="inbox-details-body">
+            <div class="alert alert-info">
+
+                @Html.ActionLink("Yeni Marka", "Create") Markalar
+            </div>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Değiştir", "Edit", new { id = item.Id }) |
+                        
+                            @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            </div>
+        </div>
+    </div>

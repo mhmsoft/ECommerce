@@ -17,7 +17,8 @@ namespace ECommerce.Areas.Management
             context.MapRoute(
                 "Management_default",
                 "Management/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "Category",action = "Index", id = UrlParameter.Optional }
+                
             );
         }
     }
