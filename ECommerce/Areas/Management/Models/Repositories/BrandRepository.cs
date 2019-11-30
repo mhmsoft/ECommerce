@@ -4,6 +4,7 @@ using ECommerce.Areas.Management.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 namespace ECommerce.Areas.Management.Models.Repositories
@@ -29,6 +30,11 @@ namespace ECommerce.Areas.Management.Models.Repositories
         public List<Brand> GetAll()
         {
             return db.Brand.ToList();
+        }
+
+        public List<Brand> GetAll(Expression<Func<Brand, bool>> where)
+        {
+            return db.Brand.Where(where).ToList();
         }
 
         public void Save(Brand entity)

@@ -4,6 +4,7 @@ using ECommerce.Areas.Management.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 namespace ECommerce.Areas.Management.Models.Repositories
@@ -19,6 +20,7 @@ namespace ECommerce.Areas.Management.Models.Repositories
         public void Delete(Model entity)
         {
             db.Model.Remove(entity);
+            db.SaveChanges();
         }
 
         public Model Get(int Id)
@@ -29,6 +31,17 @@ namespace ECommerce.Areas.Management.Models.Repositories
         public List<Model> GetAll()
         {
             return db.Model.ToList(); 
+        }
+
+        public List<Model> GetAll(Expression<Func<Model, bool>> where)
+        {
+            return db.Model.Where(where).ToList();
+        }
+
+        public List<Model> GetAll(int brandId)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            return db.Model.Where(x => x.brandId == brandId).ToList();
         }
 
         public void Save(Model entity)

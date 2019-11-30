@@ -9,44 +9,46 @@ using System.Web;
 
 namespace ECommerce.Areas.Management.Models.Repositories
 {
-    public class CategoryRepository : IRepository<Category>
+    public class SubModelRepository : IRepository<SubModel>
     {
         private ApplicationDbContext db;
-        public CategoryRepository(ApplicationDbContext _db)
+        public SubModelRepository(ApplicationDbContext _db)
         {
-            db = _db;
+            this.db = _db;
         }
-        public void Delete(Category entity)
+        public void Delete(SubModel entity)
         {
-            db.Category.Remove(entity);
+            db.SubModel.Remove(entity);
             db.SaveChanges();
         }
 
-        public Category Get(int Id)
+        public SubModel Get(int Id)
         {
-            return db.Category.FirstOrDefault(x=>x.Id==Id);
+            return db.SubModel.Find(Id);
         }
 
-        public List<Category> GetAll()
+        public List<SubModel> GetAll()
         {
-            return db.Category.ToList();
+            return db.SubModel.ToList();
         }
 
-        public List<Category> GetAll(Expression<Func<Category, bool>> where)
+        public List<SubModel> GetAll(Expression<Func<SubModel, bool>> where)
         {
-            return db.Category.Where(where).ToList();
+            return db.SubModel.Where(where).ToList();
         }
+       
 
-        public void Save(Category entity)
+        public void Save(SubModel entity)
         {
-            db.Category.Add(entity);
+            db.SubModel.Add(entity);
             db.SaveChanges();
         }
 
-        public void Update(Category entity)
+        public void Update(SubModel entity)
         {
             db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
+
     }
 }

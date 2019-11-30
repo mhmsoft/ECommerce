@@ -1,0 +1,85 @@
+﻿@model ECommerce.Areas.Management.Models.Entities.SubModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
+}
+<div class="col-md-8 compose-right">
+    <div class="inbox-details-default">
+
+        <div class="inbox-details-body">
+            <div class="alert alert-info">
+                Kategori Ekleme Formu
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @*Marka Combobox*@
+                <div class="form-group">
+                    @Html.Label("Brand", "modelId", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("brandId", new SelectList(ViewBag.Brands, "Id", "Name"),"Marka Seç", htmlAttributes: new { @class = "form-control" })
+                      
+                    </div>
+                </div>
+                @*Model Combobox*@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.modelId, "modelId", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.modelId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "Name"), "Model Seç", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.modelId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-5">
+                        <input type="submit" value="Create" />
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </div>
+            </div>
+
+            }
+
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#brandId").change(function () {
+            var brandId = $('#brandId option:selected').val();
+            //modeller
+            var model = $("#modelId");
+            //alert(cityId);
+            $.ajax({
+                url: "/SubModel/getModels",
+                data: { brandId: brandId },
+                type: "post",
+                success: function (data) {
+                    //modelleri(dropdown) boşalt
+                    model.empty();
+                    $.each(data, function (i, models) {
+                        //alert(JSON.stringify(data));
+                        model.append(
+                            $('<option></option>').val(models.Id).html(models.Name)
+                        );
+                    });
+                }
+            });
+        });
+    });
+</script>

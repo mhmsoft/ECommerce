@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Linq.Expressions;
 
 namespace ECommerce.Areas.Management.Models.Repositories
 {
@@ -30,6 +31,11 @@ namespace ECommerce.Areas.Management.Models.Repositories
         public List<Product> GetAll()
         {
             return db.Product.ToList();
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> where)
+        {
+            return db.Product.Where(where).ToList();
         }
 
         public void Save(Product entity)

@@ -6,9 +6,11 @@ using System.Web;
 
 namespace ECommerce.Areas.Management.Models.Entities
 {
-    public class Brand:BaseEntity
+    public class SubModel:BaseEntity
     {
-        //one to many relation
-        public virtual ICollection<Model> Model { get; set; }
+       
+        public int modelId { get; set; }
+      
+        public virtual Model Model { get; set; }
     }
 }

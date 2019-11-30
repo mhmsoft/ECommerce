@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace ECommerce.Areas.Management.Models.Interface
 {
@@ -13,5 +14,6 @@ namespace ECommerce.Areas.Management.Models.Interface
         void Delete(T entity);
         T Get(int Id);
         List<T> GetAll();
+        List<T> GetAll(Expression<Func<T,bool>> where);
     }
 }

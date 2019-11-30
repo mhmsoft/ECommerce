@@ -8,9 +8,11 @@ namespace ECommerce.Areas.Management.Models.Entities
 {
     public class Model:BaseEntity
     {
-        public int parentId { get; set; }
+        //public int parentId { get; set; }
         public int brandId { get; set; }
 
-        public Brand Brand { get; set; }
+        //one to one reletion
+        public  virtual Brand Brand { get; set; }
+        public virtual ICollection<SubModel> SubModel { get; set; }
     }
 }

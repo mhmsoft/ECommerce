@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ECommerce.Areas.Management.Models.Entities.SubModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
+}
+<div class="col-md-10 compose">
+    <div class="inbox-details-default">
+
+        <div class="inbox-details-body">
+            <div class="alert alert-info">
+
+                @Html.ActionLink("Yeni Alt Model", "Create") Marka / Model / Alt Modeller
+            </div>
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Marka")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Model")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Alt Model")
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model.Brand.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Düzelt", "Edit", new { id = item.Id }) |
+
+                            @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            </div>
+        </div>
+    </div>

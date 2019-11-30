@@ -18,5 +18,6 @@ namespace ECommerce.Areas.Management.Models.Context
         public virtual DbSet<Brand> Brand { get; set; }
         public virtual DbSet<Model> Model { get; set; }
         public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<SubModel> SubModel { get; set; }
     }
 }
