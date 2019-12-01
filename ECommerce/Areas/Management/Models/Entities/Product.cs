@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerce.Areas.Management.Models.Entities
 {
@@ -55,8 +56,13 @@ namespace ECommerce.Areas.Management.Models.Entities
 
         public int brandId { get; set; }
         public int categoryId { get; set; }
+        public int? modelId { get; set; }
+        public int subModelId { get; set; }
 
         public Category Category { get; set; }
+        [ForeignKey("modelId")]
+        public Model   Model { get; set; }
+        public SubModel SubModel { get; set; }
         public Brand Brand { get; set; }
 
     }

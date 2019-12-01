@@ -183,6 +183,9 @@
     <Content Include="Areas\Management\Views\SubModel\Index.cshtml" />
     <Content Include="Areas\Management\Views\SubModel\Create.cshtml" />
     <Content Include="Areas\Management\Views\SubModel\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\SubModel\Delete.cshtml" />
+    <Content Include="Areas\Management\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Management\Views\Product\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -198,6 +201,7 @@
     <Compile Include="Areas\Management\Controllers\BrandController.cs" />
     <Compile Include="Areas\Management\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Management\Controllers\ModelController.cs" />
+    <Compile Include="Areas\Management\Controllers\ProductController.cs" />
     <Compile Include="Areas\Management\Controllers\SubModelController.cs" />
     <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
     <Compile Include="Areas\Management\Models\Context\ApplicationDbContext.cs" />

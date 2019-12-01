@@ -10,5 +10,8 @@ namespace ECommerce.Areas.Management.Models.Entities
     {
         //one to many relation
         public virtual ICollection<Model> Model { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
+
+
     }
 }

@@ -31,6 +31,11 @@ namespace ECommerce.Areas.Management.Models.Repositories
         {
             return db.SubModel.ToList();
         }
+        public List<SubModel> GetAll(int modelId)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            return db.SubModel.Where(x=>x.modelId==modelId).ToList();
+        }
 
         public List<SubModel> GetAll(Expression<Func<SubModel, bool>> where)
         {

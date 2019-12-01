@@ -24,6 +24,12 @@ namespace ECommerce.Areas.Management.Controllers
            
             return Json(MR.GetAll(brandId), JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult getSubModels(int modelId)
+        {
+
+            return Json(SMR.GetAll(modelId), JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult Create()
         {
@@ -40,7 +46,8 @@ namespace ECommerce.Areas.Management.Controllers
         }
         public ActionResult Edit(int id)
         {
-            ViewBag.Brands = new SelectList(BR.GetAll(), "Id", "Name", SMR.Get(id).Model.Brand.Id);
+            int brandCode = SMR.Get(id).Model.Brand.Id;
+            ViewBag.Brands = new SelectList(BR.GetAll(), "Id", "Name", brandCode);
 
             ViewBag.Models = new SelectList(MR.GetAll(), "Id", "Name", SMR.Get(id).modelId);
             return View(SMR.Get(id));
@@ -53,6 +60,19 @@ namespace ECommerce.Areas.Management.Controllers
                 SMR.Update(model);
             return RedirectToAction("/");
         }
+        public ActionResult Delete(int id)
+        {
+            return View(SMR.Get(id));
+        }
+        [HttpPost,ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Deletex(int id)
+        {
+            if (ModelState.IsValid)
+                SMR.Delete(SMR.Get(id));
+            return RedirectToAction("/");
+        }
+
 
     }
 }

@@ -1,0 +1,184 @@
+﻿@model ECommerce.Areas.Management.Models.Entities.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
+}
+<div class="col-md-8 compose-right">
+    <div class="inbox-details-default">
+
+        <div class="inbox-details-body">
+            <div class="alert alert-info">
+                Ürün Ekleme Formu
+            </div>
+
+
+            @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.Label("Kategori", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("categoryId", new SelectList(ViewBag.Categories, "Id", "Name"), "Kategori Seç", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.categoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Marka", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("brandId", new SelectList(ViewBag.Brands, "Id", "Name"), "Marka Seç", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.brandId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Model", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("modelId", new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "Name"), "Model Seç", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.modelId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Alt Model", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("subModelId", new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "Name"), "Alt Model Seç", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.subModelId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ClassType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EnumDropDownListFor(model => model.ClassType, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ClassType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FuelType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EnumDropDownListFor(model => model.FuelType, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FuelType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GearType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EnumDropDownListFor(model => model.GearType, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.GearType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dailyPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.dailyPrice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.dailyPrice, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.discount, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.discount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.discount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.autoModelYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("autoModelYear", ViewBag.ModelYear as SelectList, "Model yılı Seç", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.autoModelYear, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.km, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.km, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.km, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        @Html.Label("image", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" name="image" id="image" class="form-control" />
+                          
+                        </div>
+                    </div>*@
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-5">
+                            <input type="submit" value="Kaydet" />
+                            @Html.ActionLink("Ürün Listesi", "Index")
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#brandId").change(function () {
+            var brandId = $('#brandId option:selected').val();
+            //modeller
+            var model = $("#modelId");
+            //alert(cityId);
+            $.ajax({
+                url: "/SubModel/getModels",
+                data: { brandId: brandId },
+                type: "post",
+                success: function (data) {
+                    //modelleri(dropdown) boşalt
+                    model.empty();
+                    $.each(data, function (i, models) {
+                        //alert(JSON.stringify(data));
+                        model.append(
+                            $('<option></option>').val(models.Id).html(models.Name)
+                        );
+                    });
+                }
+            });
+        });
+        $("#modelId").change(function () {
+            var modelId = $('#modelId option:selected').val();
+            //modeller
+            var subModel = $("#subModelId");
+            //alert(cityId);
+            $.ajax({
+                url: "/SubModel/getSubModels",
+                data: { modelId: modelId },
+                type: "post",
+                success: function (data) {
+                    //altmodelleri(dropdown) boşalt
+                    subModel.empty();
+                    $.each(data, function (i, subModels) {
+                        //alert(JSON.stringify(data));
+                        subModel.append(
+                            $('<option></option>').val(subModels.Id).html(subModels.Name)
+                        );
+                    });
+                }
+            });
+        });
+    });
+</script>
