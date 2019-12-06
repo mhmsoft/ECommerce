@@ -33,15 +33,15 @@ namespace ECommerce.Areas.Management.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product model, HttpPostedFileBase image)
+        public ActionResult Create(Product model, HttpPostedFileBase image1)
         {
           if (ModelState.IsValid)
             {
-                if (image != null)
+                if (image1 != null)
                 {
-                    using (var br = new BinaryReader(image.InputStream))
+                    using (var br = new BinaryReader(image1.InputStream))
                     {
-                        var data = br.ReadBytes(image.ContentLength);
+                        var data = br.ReadBytes(image1.ContentLength);
                         model.image = data;
                     }
                     
