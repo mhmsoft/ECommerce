@@ -1,7 +1,7 @@
 ﻿@model ECommerce.Areas.Management.Models.Entities.Product
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
 }
 <div class="col-md-8 compose-right">
@@ -9,16 +9,18 @@
 
         <div class="inbox-details-body">
             <div class="alert alert-info">
-                Ürün Ekleme Formu
+                Ürün Değiştirme
             </div>
 
-            @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-
+                <h4>Product</h4>
+                <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
 
                 <div class="form-group">
                     @Html.Label("Kategori", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -37,7 +39,7 @@
                 <div class="form-group">
                     @Html.Label("Model", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("modelId", new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "Name"), "Model Seç", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("modelId", new SelectList(ViewBag.Models, "Id", "Name"), "Model Seç", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.modelId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -45,7 +47,7 @@
                 <div class="form-group">
                     @Html.Label("Alt Model", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("subModelId", new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "Name"), "Alt Model Seç", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("subModelId", new SelectList(ViewBag.SubModels, "Id", "Name"), "Alt Model Seç", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.subModelId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -112,12 +114,26 @@
                         @Html.ValidationMessageFor(model => model.stock, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Resim", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @if (Model.image != null)
+                        {
+                            <div style="display:inline-block; margin:5px; border:1px solid #808080; padding:10px;">
+                                <img style="width:90px;height:110px;" src="data:image/png;base64,@Convert.ToBase64String(Model.image)" />
+
+                                @*<a style="display:block;" href="javascript:void(0);" id="Link_Sil" resim_id="@item.imageId">Sil</a>*@
+                            </div>
+                        }
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -128,21 +144,22 @@
                     </div>
                 </div>
 
-
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-5">
-                        <input type="submit" value="Kaydet" />
-                        @Html.ActionLink("Ürün Listesi", "Index")
+                        <input type="submit" value="Save" />
+
+                        @Html.ActionLink("Back to List", "Index")
+
                     </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
-
             }
-
-
         </div>
-    </div>
 </div>
+
+
+<div class="clearfix"></div>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#brandId").change(function () {

@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace ECommerce.Areas.Management.Models.Interface
 {
-    interface IRepository<T> where T:BaseEntity
+    interface IRepository<T> where T:class
     {
         void Save(T entity);
         void Update(T entity);

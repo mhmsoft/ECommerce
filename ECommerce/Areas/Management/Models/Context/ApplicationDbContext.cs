@@ -21,19 +21,29 @@ namespace ECommerce.Areas.Management.Models.Context
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<SubModel> SubModel { get; set; }
 
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<role> Role { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             modelBuilder.Entity<Product>()
+              .HasRequired(c => c.Brand)
+              .WithMany(t => t.Product);
+
+            modelBuilder.Entity<Product>()
             .HasRequired(c => c.Model)
-            .WithMany()
+            .WithMany(t=>t.Product)
             .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
            .HasRequired(c => c.SubModel)
-           .WithMany()
+           .WithMany(t=>t.Product)
            .WillCascadeOnDelete(false);
+
+           
+          
         }
     }
 }

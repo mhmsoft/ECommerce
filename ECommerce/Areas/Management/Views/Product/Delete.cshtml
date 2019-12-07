@@ -1,0 +1,132 @@
+﻿@model ECommerce.Areas.Management.Models.Entities.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
+}
+
+<div class="col-md-8 compose-right">
+    <div class="inbox-details-default">
+
+        <div class="inbox-details-body">
+            <div class="alert alert-info">
+                Ürün Silme Formu
+            </div>
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Brand.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Brand.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Category.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Category.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SubModel.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SubModel.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ClassType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ClassType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FuelType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FuelType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.GearType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.GearType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.dailyPrice)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.dailyPrice)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.discount)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.discount)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.autoModelYear)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.autoModelYear)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.km)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.km)
+                </dd>
+
+                
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-5">
+                        <input type="submit" value="Sil" />
+                        @Html.ActionLink("Geri Dön", "Index")
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

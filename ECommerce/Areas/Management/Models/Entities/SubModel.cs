@@ -11,7 +11,7 @@ namespace ECommerce.Areas.Management.Models.Entities
        
         public int modelId { get; set; }
       
-        public virtual Model Model { get; set; }
+        public virtual  Model Model { get; set; }
         public virtual ICollection<Product> Product { get; set; }
     }
 }

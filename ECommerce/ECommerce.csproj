@@ -186,6 +186,8 @@
     <Content Include="Areas\Management\Views\SubModel\Delete.cshtml" />
     <Content Include="Areas\Management\Views\Product\Index.cshtml" />
     <Content Include="Areas\Management\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Management\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\Product\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -207,16 +209,21 @@
     <Compile Include="Areas\Management\Models\Context\ApplicationDbContext.cs" />
     <Compile Include="Areas\Management\Models\Entities\Brand.cs" />
     <Compile Include="Areas\Management\Models\Entities\Category.cs" />
+    <Compile Include="Areas\Management\Models\Entities\Customer.cs" />
     <Compile Include="Areas\Management\Models\Entities\Model.cs" />
     <Compile Include="Areas\Management\Models\Entities\Product.cs" />
+    <Compile Include="Areas\Management\Models\Entities\role.cs" />
     <Compile Include="Areas\Management\Models\Entities\SubModel.cs" />
     <Compile Include="Areas\Management\Models\Interface\BaseEntity.cs" />
     <Compile Include="Areas\Management\Models\Interface\IRepository.cs" />
+    <Compile Include="Areas\Management\Models\Provider\role.cs" />
     <Compile Include="Areas\Management\Models\Repositories\BrandRepository.cs" />
     <Compile Include="Areas\Management\Models\Repositories\CategoryRepository.cs" />
+    <Compile Include="Areas\Management\Models\Repositories\CustomerRepository.cs" />
     <Compile Include="Areas\Management\Models\Repositories\ModelRepository.cs" />
     <Compile Include="Areas\Management\Models\Repositories\ProductRepository.cs" />
     <Compile Include="Areas\Management\Models\Repositories\SubModelRepository.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -249,8 +256,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Management\Views\Default\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Linq.Expressions;
+using System.Data.Entity;
 
 namespace ECommerce.Areas.Management.Models.Repositories
 {
@@ -46,7 +47,10 @@ namespace ECommerce.Areas.Management.Models.Repositories
 
         public void Update(Product entity)
         {
-            db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            Product old = Get(entity.Id);
+            db.Entry(old).State = EntityState.Detached;
+            
+            db.Entry(entity).State = EntityState.Modified;
             db.SaveChanges();
         }
     }

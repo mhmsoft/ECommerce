@@ -51,19 +51,24 @@ namespace ECommerce.Areas.Management.Models.Entities
         public int autoModelYear { get; set; }
         [Display(Name="Kilometre")]
         public int km { get; set; }
+        [Display(Name = "Stok Miktarı")]
+        public int stock { get; set; }
+
         [Display(Name = "Resim")]
         public byte[] image { get; set; }
 
-        public int brandId { get; set; }
-        public int categoryId { get; set; }
+        public int? brandId { get; set; }
+        public int? categoryId { get; set; }
         public int? modelId { get; set; }
-        public int subModelId { get; set; }
-
-        public Category Category { get; set; }
-        [ForeignKey("modelId")]
-        public Model   Model { get; set; }
-        public SubModel SubModel { get; set; }
-        public Brand Brand { get; set; }
+        public int? subModelId { get; set; }
+      
+        public virtual Category Category { get; set; }
+      
+        public virtual Model   Model { get; set; }
+      
+        public virtual SubModel SubModel { get; set; }
+       
+        public virtual Brand Brand { get; set; }
 
     }
 }

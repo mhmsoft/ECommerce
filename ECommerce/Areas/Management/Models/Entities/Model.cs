@@ -12,7 +12,7 @@ namespace ECommerce.Areas.Management.Models.Entities
         public int brandId { get; set; }
 
         //one to one reletion
-        public  virtual Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
         public virtual ICollection<SubModel> SubModel { get; set; }
         public virtual ICollection<Product> Product { get; set; }
     }

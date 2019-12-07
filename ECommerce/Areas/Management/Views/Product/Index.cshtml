@@ -5,7 +5,7 @@
     Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
 }
 
-<div class="col-md-10 compose">
+<div class="col-md-12 compose">
     <div class="inbox-details-default">
 
         <div class="inbox-details-body">
@@ -20,7 +20,10 @@
                         @Html.DisplayName("Marka")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Category.Description)
+                        @Html.DisplayName("Model")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Alt Model")
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ClassType)
@@ -44,6 +47,9 @@
                         @Html.DisplayNameFor(model => model.km)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.stock)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.image)
                     </th>
                     <th>
@@ -54,53 +60,61 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Brand.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Category.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ClassType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FuelType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.GearType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dailyPrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.discount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.autoModelYear)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.km)
-                        </td>
-                        <td>
-                            @if (item.image==null)
-                            {
-                                <img style="width:70px;height:60px;" src="~/Areas/Management/Assets/images/icon.png" />
-                            }
-                            else
-                            {
-                                <img style="width:70px;height:60px;" src="data:image;base64,@System.Convert.ToBase64String(item.image)" alt="@item.Name" />
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Detay", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Sil", "Delete", new { id = item.Id })
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brand.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubModel.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClassType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FuelType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GearType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dailyPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.discount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.autoModelYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.km)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.stock)
+                    </td>
+                    <td>
+                        @if (item.image == null)
+                        {
+                            <img style="width:70px;height:60px;" src="~/Areas/Management/Assets/images/icon.png" />
+                        }
+                        else
+                        {
+                            <img style="width:70px;height:60px;" src="data:image;base64,@System.Convert.ToBase64String(item.image)" alt="@item.Name" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
                 }
 
             </table>
