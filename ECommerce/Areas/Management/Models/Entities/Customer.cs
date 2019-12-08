@@ -49,6 +49,6 @@ namespace ECommerce.Areas.Management.Models.Entities
         public Nullable<bool> subscribe { get; set; }
 
          public Nullable<int> roleId { get; set; }
-        public virtual role role { get; set; }
+        public  virtual role Role { get; set; }
     }
 }

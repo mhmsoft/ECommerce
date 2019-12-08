@@ -10,6 +10,6 @@ namespace ECommerce.Areas.Management.Models.Entities
         public int roleId { get; set; }
         public string roleName { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public virtual ICollection<Customer> Customer { get; set; }
     }
 }

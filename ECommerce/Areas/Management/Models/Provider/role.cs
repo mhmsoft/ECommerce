@@ -41,10 +41,10 @@ namespace ECommerce.Areas.Management.Models.Provider
 
         public override string[] GetRolesForUser(string username)
         {
-            //string roleName = userRepo.GetAll().Where(a => a.email == username).FirstOrDefault().role.
-            //string[] result = { roleName };
-            //return result;
-            throw new NotImplementedException();
+            string roleName = userRepo.GetAll().Where(a => a.email == username).FirstOrDefault().Role.roleName;
+            string[] result = { roleName };
+            return result;
+          
         }
 
         public override string[] GetUsersInRole(string roleName)
