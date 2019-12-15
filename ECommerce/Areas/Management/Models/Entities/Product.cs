@@ -53,7 +53,8 @@ namespace ECommerce.Areas.Management.Models.Entities
         public int km { get; set; }
         [Display(Name = "Stok Miktarı")]
         public int stock { get; set; }
-
+        [Display(Name = "Açıklama")]
+        public string description { get; set; }
         [Display(Name = "Resim")]
         public byte[] image { get; set; }
 

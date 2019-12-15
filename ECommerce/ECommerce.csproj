@@ -51,6 +51,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -250,6 +256,7 @@
     <Content Include="assets\js\plugins\vegas.min.js" />
     <Content Include="assets\js\plugins\waypoints.min.js" />
     <Content Include="assets\js\popper.min.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Management\Views\Category\Create.cshtml" />
     <Content Include="Areas\Management\Views\Category\Edit.cshtml" />
@@ -330,7 +337,10 @@
     <Compile Include="Areas\Management\Models\Repositories\ModelRepository.cs" />
     <Compile Include="Areas\Management\Models\Repositories\ProductRepository.cs" />
     <Compile Include="Areas\Management\Models\Repositories\SubModelRepository.cs" />
+    <Compile Include="Areas\Management\Models\VM\Login.cs" />
+    <Compile Include="Areas\Management\Models\VM\RPassword.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Crypto\Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -358,6 +368,10 @@
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\_shared\_header.cshtml" />
     <Content Include="Views\_shared\_footer.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
+    <Content Include="Views\Customer\forgotPassword.cshtml" />
+    <Content Include="Views\Customer\resetPassword.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
