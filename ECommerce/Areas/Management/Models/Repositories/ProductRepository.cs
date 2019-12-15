@@ -53,5 +53,16 @@ namespace ECommerce.Areas.Management.Models.Repositories
             db.Entry(entity).State = EntityState.Modified;
             db.SaveChanges();
         }
+        // yeni bir yorum ekle
+        public void CommentSave(comment entity)
+        {
+            db.Comment.Add(entity);
+            db.SaveChanges();
+        }
+        // yorumları gönder
+        public List<comment> CommentList()
+        {
+            return db.Comment.ToList();
+        }
     }
 }

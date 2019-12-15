@@ -20,7 +20,7 @@ namespace ECommerce.Areas.Management.Models.Context
         public virtual DbSet<Model> Model { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<SubModel> SubModel { get; set; }
-
+        public virtual DbSet<comment> Comment { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<role> Role { get; set; }
 

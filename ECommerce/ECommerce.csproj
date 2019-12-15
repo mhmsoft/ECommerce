@@ -323,6 +323,7 @@
     <Compile Include="Areas\Management\Models\Context\ApplicationDbContext.cs" />
     <Compile Include="Areas\Management\Models\Entities\Brand.cs" />
     <Compile Include="Areas\Management\Models\Entities\Category.cs" />
+    <Compile Include="Areas\Management\Models\Entities\comment.cs" />
     <Compile Include="Areas\Management\Models\Entities\Customer.cs" />
     <Compile Include="Areas\Management\Models\Entities\Model.cs" />
     <Compile Include="Areas\Management\Models\Entities\Product.cs" />
@@ -372,6 +373,8 @@
     <Content Include="Views\Customer\forgotPassword.cshtml" />
     <Content Include="Views\Customer\resetPassword.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Default\productDetail.cshtml" />
+    <Content Include="Views\Default\Comments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

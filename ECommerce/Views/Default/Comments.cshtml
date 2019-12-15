@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ECommerce.Areas.Management.Models.Entities.comment>
+<div class="review-area">
+
+    <h3>Yorumlar</h3>
+    <!--Yorum başı-->
+    <div class="faq-details-content">
+        <!-- Single FAQ Subject  Start -->
+        <div class="single-faq-sub">
+
+            <div class="single-faq-sub-content">
+                <div id="accordion">
+                    <!-- Single FAQ Start -->
+                    @foreach (var comment in Model)
+                    {
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#@comment.Id" aria-expanded="true" aria-controls="@comment.Id">
+                                        <span>@comment.owner</span>
+                                        <i class="fa fa-angle-down"></i>
+                                        <i class="fa fa-angle-up"></i>
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="@comment.Id" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+                                   @comment.message
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Single FAQ End -->
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--Yorum sonu-->
+    <div class="review-star">
+        <p class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star unmark"></i>
+            <i class="fa fa-star unmark"></i>
+        </p>
+    </div>
+    <div class="review-form">
+        <form id="commentForm" action="@Url.Action("NewComment","Default")" method="post">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <input type="hidden"  id="productId" name="productId" value="@Model.FirstOrDefault().productId" />
+                    <div class="name-input">
+                        <input type="text" id="owner" name="owner" placeholder="İsim">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="email-input">
+                        <input type="email" id="email" name="email" placeholder="Eposta adresi">
+                    </div>
+                </div>
+            </div>
+
+            <div class="message-input">
+                <textarea  id="message" name="message" cols="30" rows="5" placeholder="Bir yorum yazın"></textarea>
+            </div>
+
+            <div class="input-submit">
+                <button type="submit">Kaydet</button>
+                <button type="reset">Temizle</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("$commentForm").submit(function () {
+            location.reload();
+        });
+
+    });
+</script>
