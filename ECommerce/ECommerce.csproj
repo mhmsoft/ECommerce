@@ -340,6 +340,7 @@
     <Compile Include="Areas\Management\Models\Repositories\SubModelRepository.cs" />
     <Compile Include="Areas\Management\Models\VM\Login.cs" />
     <Compile Include="Areas\Management\Models\VM\RPassword.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Crypto\Crypto.cs" />
@@ -375,6 +376,7 @@
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Default\productDetail.cshtml" />
     <Content Include="Views\Default\Comments.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -40,10 +40,11 @@ namespace ECommerce.Controllers
         }
         // Yeni bir yorum kaydetme
         [HttpPost]
-        public void NewComment(comment model)
+        public string NewComment(comment model)
         {
             model.reviewDate = DateTime.Now;
             ProductManager.CommentSave(model);
+            return "yorum kaydedildi";
         }
     }
 }
