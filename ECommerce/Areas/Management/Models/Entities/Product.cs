@@ -71,6 +71,7 @@ namespace ECommerce.Areas.Management.Models.Entities
        
         public virtual Brand Brand { get; set; }
         public virtual ICollection<comment> Comment { get; set; }
+        public virtual ICollection<WishList> WishList { get; set; }
 
     }
 }

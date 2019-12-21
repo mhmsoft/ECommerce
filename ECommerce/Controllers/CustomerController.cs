@@ -142,6 +142,7 @@ namespace ECommerce.Controllers
                     sayac++;
                     _user.loginAttempt = sayac;
                     CustomerManager.Update(_user);
+                    return View();
                 }
                 // aşama-3->kullanıcı aktif değilse
                 if (_user.isActive == false)
@@ -187,7 +188,7 @@ namespace ECommerce.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Default");
+                        return RedirectToAction("Index", "Account");
                     }
                 }
                 // parola yanlışsa

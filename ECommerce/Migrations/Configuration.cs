@@ -1,5 +1,6 @@
 namespace ECommerce.Migrations
 {
+    using ECommerce.Areas.Management.Models.Entities;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -18,6 +19,7 @@ namespace ECommerce.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+             
         }
     }
 }

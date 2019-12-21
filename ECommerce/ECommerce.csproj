@@ -329,6 +329,7 @@
     <Compile Include="Areas\Management\Models\Entities\Product.cs" />
     <Compile Include="Areas\Management\Models\Entities\role.cs" />
     <Compile Include="Areas\Management\Models\Entities\SubModel.cs" />
+    <Compile Include="Areas\Management\Models\Entities\WishList.cs" />
     <Compile Include="Areas\Management\Models\Interface\BaseEntity.cs" />
     <Compile Include="Areas\Management\Models\Interface\IRepository.cs" />
     <Compile Include="Areas\Management\Models\Provider\role.cs" />
@@ -376,7 +377,10 @@
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Default\productDetail.cshtml" />
     <Content Include="Views\Default\Comments.cshtml" />
+    <Content Include="Views\_shared\_LayoutAccount.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\MyProfile.cshtml" />
+    <Content Include="Views\Account\changePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

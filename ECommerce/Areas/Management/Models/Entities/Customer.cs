@@ -29,7 +29,7 @@ namespace ECommerce.Areas.Management.Models.Entities
         [MinLength(6, ErrorMessage = "Şifrenizin en az 6 karakter olması gerekir")]
         [Compare("password",ErrorMessage ="Şifreniz eşleşmiyor")]
         public string rePassword { get; set; }
-        [Display(Name = "Tekrar Şifre")]
+        [Display(Name = "Telefon")]
         [DataType(DataType.PhoneNumber)]
         public string phone { get; set; }
         [Display(Name = "Adres")]
@@ -50,5 +50,6 @@ namespace ECommerce.Areas.Management.Models.Entities
 
          public Nullable<int> roleId { get; set; }
         public  virtual role Role { get; set; }
+        public virtual ICollection<WishList> WishList { get; set; }
     }
 }
