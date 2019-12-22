@@ -51,5 +51,6 @@ namespace ECommerce.Areas.Management.Models.Entities
          public Nullable<int> roleId { get; set; }
         public  virtual role Role { get; set; }
         public virtual ICollection<WishList> WishList { get; set; }
+        public virtual ICollection<Rent> Rent { get; set; }
     }
 }

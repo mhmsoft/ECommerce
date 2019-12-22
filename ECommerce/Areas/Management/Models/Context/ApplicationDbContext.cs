@@ -22,7 +22,9 @@ namespace ECommerce.Areas.Management.Models.Context
         public virtual DbSet<SubModel> SubModel { get; set; }
         public virtual DbSet<comment> Comment { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<WishList> WishList { get; set; }
         public virtual DbSet<role> Role { get; set; }
+        public virtual DbSet<Rent> Rent { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

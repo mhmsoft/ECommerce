@@ -12,6 +12,8 @@ namespace ECommerce.Controllers
     public class AccountController : Controller
     {
         CustomerRepository customerManager = new CustomerRepository(new Areas.Management.Models.Context.ApplicationDbContext());
+        WishListRepository wishListManager = new WishListRepository(new Areas.Management.Models.Context.ApplicationDbContext());
+        RentRepository rentManager = new RentRepository(new Areas.Management.Models.Context.ApplicationDbContext());
         public ActionResult Index()
         { 
             if (User.Identity.IsAuthenticated)
@@ -76,5 +78,31 @@ namespace ECommerce.Controllers
             ViewBag.Message = message;
             return View(model);
         }
+        public string addWish(int productId)
+        {
+            //kullanıcı login olmuşsa
+            if(User.Identity.IsAuthenticated)
+            {
+                int customerId = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).customerId;
+                WishList newWish = new WishList()
+                {
+                    customerId = customerId,
+                    productId = productId
+                };
+                // eğer wishList içerisinde aynı adam aynı ürünü daha önce beğenmişse
+               if(!wishListManager.GetAll().Exists(x=>x.productId==productId && x.customerId==customerId))
+                   wishListManager.Save(newWish);
+
+                return "Beğenildi";
+            }
+            return "Beğeni yapmak için üye olunuz";
+        }
+        public ActionResult MyWishList()
+        {
+            int customerId = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).customerId;
+            var model = wishListManager.GetAll().Where(x => x.customerId == customerId).ToList();
+            return View(model);
+        }
+      
     }
 }

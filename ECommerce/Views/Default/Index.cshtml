@@ -176,8 +176,12 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star unmark"></i>
                                                 </p>
-                                                <a href="#" class="rent-btn">Kirala</a>
-                                                <a href="#" class="rent-btn">Beğen</a>
+                                                <a href="@Url.Action("newRent","Default",new {productId=item.Id })" class="rent-btn">Kirala</a>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <a href="javascript:void(0);" id="Like" name="Like" product-id="@item.Id" class="rent-btn">Beğen</a>
+                                                }
+
                                             </div>
                                         </div>
                                     </div>
@@ -208,5 +212,21 @@
 </section>
 <!--End of Cars-->
 <!--Footer-->
+<script src="~/Areas/Management/Assets/js/jquery-2.1.1.min.js"></script>
+<script>
+    $(document).on("click", "#Like", function () {
+        //alert();
+        var productId = $(this).attr("product-id");
+        $.ajax({
+            url: "@Url.Action("addWish","Account")",
+            type: "Post",
+            data: { productId: productId },
+            success: function (response) {
+                alert(response);
+            }
+        });
+    });
+
+</script>
 
 @Html.Partial("~/Views/_shared/_footer.cshtml");

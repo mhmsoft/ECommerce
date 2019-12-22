@@ -1,0 +1,63 @@
+﻿@model ECommerce.Areas.Management.Models.Entities.Rent
+@{
+    ViewBag.Title = "newRent";
+    Layout = "~/Views/_shared/_LayoutAccount.cshtml";
+}
+@Html.Partial("~/Views/_shared/_header.cshtml");
+<section id="car-list-area" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="car-list-content m-t-50">
+                    <!-- Single Car Start -->
+                    <div class="single-car-wrap">
+                        <div class="row">
+                            <!-- Single Car Thumbnail -->
+                            <div class="col-lg-5">
+                                <div class="car-list-thumb car-thumb-1">
+                                    
+                                        <img style="width:100%;height:100%;" src="data:image/png;base64,@Convert.ToBase64String(Model.Product.image)" />
+                                   
+                                </div>
+                            </div>
+                            <!-- Single Car Thumbnail -->
+                            <!-- Single Car Info -->
+                            <div class="col-lg-7">
+                                <div class="display-table">
+                                    <div class="display-table-cell">
+                                        <div class="car-list-info">
+                                         
+                                            <h5>@Model.Product.dailyPrice ₺  /Günlük</h5>
+                                                                                
+                                            <ul class="car-info-list">
+                                                <li>@Html.EditorFor(model=>model.rentStartDate)</li>
+                                                <li>@Html.EditorFor(model => model.rentEndDate)</li>
+                                               
+                                            </ul>
+                                          
+                                            <a href="#" class="rent-btn">Kirala</a>
+                                           
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single Car info -->
+                        </div>
+                    </div>
+                    <!-- Single Car End -->
+
+                </div>
+
+               
+               
+            </div>
+        </div>
+        </div>
+ </section>
+
+
+@Html.Partial("~/Views/_shared/_footer.cshtml");
+
+
+

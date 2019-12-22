@@ -13,6 +13,8 @@ namespace ECommerce.Controllers
     {
         ProductRepository ProductManager = new ProductRepository(new Areas.Management.Models.Context.ApplicationDbContext());
         BrandRepository BrandManager = new BrandRepository(new Areas.Management.Models.Context.ApplicationDbContext());
+        RentRepository rentManager = new RentRepository(new Areas.Management.Models.Context.ApplicationDbContext());
+        CustomerRepository customerManager = new CustomerRepository(new Areas.Management.Models.Context.ApplicationDbContext());
         public ActionResult Index(int?page,int?brandId)
         {                                                                                       
             int _page = page ?? 1;
@@ -45,6 +47,46 @@ namespace ECommerce.Controllers
             model.reviewDate = DateTime.Now;
             ProductManager.CommentSave(model);
             return "yorum kaydedildi";
+        }
+        public ActionResult newRent(int productId)
+        {
+            Product choiceProduct = ProductManager.Get(productId);
+            Customer customer = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name);
+            Rent newRent = new Rent
+            {
+                Product = choiceProduct,
+                Customer=customer
+            };
+            return View(newRent);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult newRent(Rent model)
+        {
+            bool status = false;
+            string message = "";
+
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Customer");
+            // rent kaydetme
+            int customerId = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).customerId;
+            string email= customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
+            model.customerId = customerId;
+            rentManager.Save(model);
+
+            //email gönder
+            var url = "/Account/MyRents/";
+            Services.MailService.Link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
+            Services.MailService.title = "Öz kardeşler araba kiralama hizmeti";
+            Services.MailService.Subject = Services.MailService.title + " sitemizi seçtiğiniz için teşekkür ederiz ";
+            Services.MailService.Body = " Araba kiralama işleminin başarılı bir şekilde tamamlandı.";
+            Services.MailService.sendEmail(email);
+            status = true;
+            message = "Araba kiralama işleminin başarılı bir şekilde tamamlandı";
+            ViewBag.Status = status;
+            ViewBag.Message = message;
+
+            return View();
         }
     }
 }

@@ -327,6 +327,7 @@
     <Compile Include="Areas\Management\Models\Entities\Customer.cs" />
     <Compile Include="Areas\Management\Models\Entities\Model.cs" />
     <Compile Include="Areas\Management\Models\Entities\Product.cs" />
+    <Compile Include="Areas\Management\Models\Entities\Rent.cs" />
     <Compile Include="Areas\Management\Models\Entities\role.cs" />
     <Compile Include="Areas\Management\Models\Entities\SubModel.cs" />
     <Compile Include="Areas\Management\Models\Entities\WishList.cs" />
@@ -338,7 +339,9 @@
     <Compile Include="Areas\Management\Models\Repositories\CustomerRepository.cs" />
     <Compile Include="Areas\Management\Models\Repositories\ModelRepository.cs" />
     <Compile Include="Areas\Management\Models\Repositories\ProductRepository.cs" />
+    <Compile Include="Areas\Management\Models\Repositories\RentRepository.cs" />
     <Compile Include="Areas\Management\Models\Repositories\SubModelRepository.cs" />
+    <Compile Include="Areas\Management\Models\Repositories\WishListRepository.cs" />
     <Compile Include="Areas\Management\Models\VM\Login.cs" />
     <Compile Include="Areas\Management\Models\VM\RPassword.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -381,6 +384,8 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\MyProfile.cshtml" />
     <Content Include="Views\Account\changePassword.cshtml" />
+    <Content Include="Views\Account\MyWishList.cshtml" />
+    <Content Include="Views\Default\newRent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
