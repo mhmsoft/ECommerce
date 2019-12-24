@@ -15,7 +15,7 @@ namespace ECommerce.Areas.Management.Models.Entities
     public class Rent
     {
         public int Id { get; set; }
-        public int customerId { get; set; }
+        public int? custId { get; set; }
         public int productId { get; set; }
         public Nullable<DateTime> rentStartDate { get; set; }
         public Nullable<DateTime> rentEndDate { get; set; }
@@ -23,5 +23,6 @@ namespace ECommerce.Areas.Management.Models.Entities
 
         public virtual Product  Product{ get; set; }
         public virtual Customer Customer { get; set; }
+
     }
 }

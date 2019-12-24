@@ -65,7 +65,7 @@ namespace ECommerce.Areas.Management.Models.Entities
       
         public virtual Category Category { get; set; }
       
-        public virtual Model   Model { get; set; }
+        public virtual Model  Model { get; set; }
       
         public virtual SubModel SubModel { get; set; }
        

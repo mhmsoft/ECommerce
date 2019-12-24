@@ -344,6 +344,7 @@
     <Compile Include="Areas\Management\Models\Repositories\WishListRepository.cs" />
     <Compile Include="Areas\Management\Models\VM\Login.cs" />
     <Compile Include="Areas\Management\Models\VM\RPassword.cs" />
+    <Compile Include="Areas\Management\Models\VM\VMRent.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />

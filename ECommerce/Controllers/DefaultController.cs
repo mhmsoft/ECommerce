@@ -6,6 +6,7 @@ using System.Web;
 using PagedList;
 using System.Web.Mvc;
 using ECommerce.Areas.Management.Models.Entities;
+using ECommerce.Areas.Management.Models.VM;
 
 namespace ECommerce.Controllers
 {
@@ -48,15 +49,22 @@ namespace ECommerce.Controllers
             ProductManager.CommentSave(model);
             return "yorum kaydedildi";
         }
-        public ActionResult newRent(int productId)
+        public ActionResult newRent(int Id)
         {
-            Product choiceProduct = ProductManager.Get(productId);
-            Customer customer = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name);
+            int customerId=0;
+            Product choiceProduct = ProductManager.Get(Id);
+            //Customer customer = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name);
+
+
             Rent newRent = new Rent
             {
                 Product = choiceProduct,
-                Customer=customer
+                rentStartDate = DateTime.Now,
+                rentEndDate = DateTime.Now
+               
             };
+
+            
             return View(newRent);
         }
         [HttpPost]
@@ -71,7 +79,7 @@ namespace ECommerce.Controllers
             // rent kaydetme
             int customerId = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).customerId;
             string email= customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
-            model.customerId = customerId;
+            model.custId = customerId;
             rentManager.Save(model);
 
             //email gönder
@@ -88,5 +96,6 @@ namespace ECommerce.Controllers
 
             return View();
         }
+       
     }
 }

@@ -44,8 +44,24 @@ namespace ECommerce.Areas.Management.Models.Context
            .WithMany(t=>t.Product)
            .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Product>()
+          .HasMany(c => c.Rent)
+          .WithRequired(t => t.Product).HasForeignKey(t => t.productId)
+          .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Customer>()
+          .HasMany(c => c.Rent)
+          .WithRequired(t => t.Customer).HasForeignKey(t => t.custId)
+          .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Customer>()
+           .HasOptional(c => c.Role)
+           .WithMany(t => t.Customer).HasForeignKey(t => t.roleId)
+           .WillCascadeOnDelete(false);
+
            
-          
+
+
         }
     }
 }

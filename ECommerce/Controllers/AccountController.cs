@@ -15,7 +15,12 @@ namespace ECommerce.Controllers
         WishListRepository wishListManager = new WishListRepository(new Areas.Management.Models.Context.ApplicationDbContext());
         RentRepository rentManager = new RentRepository(new Areas.Management.Models.Context.ApplicationDbContext());
         public ActionResult Index()
-        { 
+        {
+            ViewBag.firstName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).firstName;
+            ViewBag.lastName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).lastName;
+            ViewBag.phone = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).phone;
+            ViewBag.loginTime = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).loginTime;
+            @ViewBag.email = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
             if (User.Identity.IsAuthenticated)
             {
                 var model = customerManager.GetAll().SingleOrDefault(x=>x.email==User.Identity.Name);
@@ -27,6 +32,11 @@ namespace ECommerce.Controllers
         }
         public ActionResult MyProfile()
         {
+            ViewBag.firstName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).firstName;
+            ViewBag.lastName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).lastName;
+            ViewBag.phone = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).phone;
+            ViewBag.loginTime = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).loginTime;
+            @ViewBag.email = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
             var model = customerManager.GetAll().SingleOrDefault(x => x.email == User.Identity.Name);
             return View(model);
         }
@@ -50,11 +60,21 @@ namespace ECommerce.Controllers
           
             ViewBag.Status = status;
             ViewBag.Message = message;
+            ViewBag.firstName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).firstName;
+            ViewBag.lastName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).lastName;
+            ViewBag.phone = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).phone;
+            ViewBag.loginTime = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).loginTime;
+            @ViewBag.email = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
             return View(customer);
            
         }
         public ActionResult changePassword()
         {
+            ViewBag.firstName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).firstName;
+            ViewBag.lastName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).lastName;
+            ViewBag.phone = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).phone;
+            ViewBag.loginTime = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).loginTime;
+            @ViewBag.email = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
             var model = customerManager.GetAll().SingleOrDefault(x => x.email == User.Identity.Name);
             return View(model);
         }
@@ -99,7 +119,13 @@ namespace ECommerce.Controllers
         }
         public ActionResult MyWishList()
         {
+            
             int customerId = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).customerId;
+            ViewBag.firstName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).firstName;
+            ViewBag.lastName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).lastName;
+            ViewBag.phone = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).phone;
+            ViewBag.loginTime= customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).loginTime;
+            @ViewBag.email= customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
             var model = wishListManager.GetAll().Where(x => x.customerId == customerId).ToList();
             return View(model);
         }

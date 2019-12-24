@@ -1,4 +1,4 @@
-﻿@model ECommerce.Areas.Management.Models.Entities.Customer
+﻿
 @Html.Partial("~/Views/_shared/_header.cshtml");
 <section id="page-title-area" class="section-padding overlay">
     <div class="container">
@@ -27,10 +27,10 @@
                         <h3>Hoşgeldiniz</h3>
 
                         <div class="sidebar-body">
-                            <p><i class="fa fa-user"></i>@(Model.firstName + " " + Model.lastName)  </p>
-                            <p><i class="fa fa-mobile"></i>@Model.phone</p>
-                            <p><i class="fa fa-mail-forward"></i>@Model.email</p>
-                            <p><i class="fa fa-clock-o"></i>@Model.loginTime</p>
+                            <p><i class="fa fa-user"></i>@(ViewBag.firstName + " " + ViewBag.lastName)  </p>
+                            <p><i class="fa fa-mobile"></i>@ViewBag.phone</p>
+                            <p><i class="fa fa-mail-forward"></i>@ViewBag.email</p>
+                            <p><i class="fa fa-clock-o"></i>@ViewBag.loginTime</p>
                         </div>
                     </div>
                     <!-- Single Sidebar End -->

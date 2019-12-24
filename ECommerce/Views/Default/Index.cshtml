@@ -176,7 +176,7 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star unmark"></i>
                                                 </p>
-                                                <a href="@Url.Action("newRent","Default",new {productId=item.Id })" class="rent-btn">Kirala</a>
+                                                <a href="@Url.Action("newRent","Default",new {Id=item.Id })" class="rent-btn">Kirala</a>
                                                 @if (User.Identity.IsAuthenticated)
                                                 {
                                                     <a href="javascript:void(0);" id="Like" name="Like" product-id="@item.Id" class="rent-btn">Beğen</a>

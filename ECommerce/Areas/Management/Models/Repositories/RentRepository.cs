@@ -30,7 +30,7 @@ namespace ECommerce.Areas.Management.Models.Repositories
 
         public List<Rent> GetAll()
         {
-            return db.Rent.ToList();
+            return db.Rent.Include("Customer").ToList();
         }
 
         public List<Rent> GetAll(Expression<Func<Rent, bool>> where)
