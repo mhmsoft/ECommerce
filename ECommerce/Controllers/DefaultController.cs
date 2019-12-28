@@ -54,11 +54,11 @@ namespace ECommerce.Controllers
             int customerId=0;
             Product choiceProduct = ProductManager.Get(Id);
             //Customer customer = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name);
-
-
+          
             Rent newRent = new Rent
             {
                 Product = choiceProduct,
+                productId=choiceProduct.Id,
                 rentStartDate = DateTime.Now,
                 rentEndDate = DateTime.Now
                
@@ -80,6 +80,7 @@ namespace ECommerce.Controllers
             int customerId = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).customerId;
             string email= customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
             model.custId = customerId;
+            model.rentState = rentState.Beklemede;
             rentManager.Save(model);
 
             //email gönder
@@ -94,7 +95,8 @@ namespace ECommerce.Controllers
             ViewBag.Status = status;
             ViewBag.Message = message;
 
-            return View();
+            model.Product = ProductManager.Get(model.productId);
+            return View(model);
         }
        
     }

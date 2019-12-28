@@ -1,5 +1,8 @@
-﻿
+﻿@*HEADER*@
 @Html.Partial("~/Views/_shared/_header.cshtml");
+
+@*BREADCUMB*@
+
 <section id="page-title-area" class="section-padding overlay">
     <div class="container">
         <div class="row">
@@ -16,11 +19,12 @@
     </div>
 </section>
 
+
 <section id="car-list-area" class="section-padding">
     <div class="container">
         <div class="row">
             <!-- Sidebar Area Start -->
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="sidebar-content-wrap">
                     <!-- Single Sidebar Start -->
                     <div class="single-sidebar">
@@ -71,30 +75,21 @@
                     </div>
                     <!-- Single Sidebar End -->
                     <!-- Single Sidebar Start -->
-                    <div class="single-sidebar">
-                        <h3>Connect with Us</h3>
-
-                        <div class="sidebar-body">
-                            <div class="social-icons text-center">
-                                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-behance"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-dribbble"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Sidebar End -->
+                   
                 </div>
             </div>
             <!-- Sidebar Area End -->
             <!-- Car List Content Start -->
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 @RenderBody()
             </div>
             <!-- Car List Content End -->
         </div>
     </div>
 </section>
+
+
+@*FOOTER*@
+
 @Html.Partial("~/Views/_shared/_footer.cshtml");
 

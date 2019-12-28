@@ -129,6 +129,40 @@ namespace ECommerce.Controllers
             var model = wishListManager.GetAll().Where(x => x.customerId == customerId).ToList();
             return View(model);
         }
-      
+        public ActionResult MyRents()
+        {
+
+            int customerId = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).customerId;
+            ViewBag.firstName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).firstName;
+            ViewBag.lastName = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).lastName;
+            ViewBag.phone = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).phone;
+            ViewBag.loginTime = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).loginTime;
+            @ViewBag.email = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
+            var model = rentManager.GetAll().Where(x => x.custId == customerId).ToList();
+            return View(model);
+        }
+        // beğenilen araçlardan istenileni silme
+        [HttpPost]
+        public bool deleteWish(int Id)
+        {
+            if (Id != null)
+            {
+                wishListManager.Delete(wishListManager.Get(Id));
+                return true;
+            }
+            return false;
+        }
+        // kiralanan araçlardan istenileni silme
+        [HttpPost]
+        public bool deleteRent(int Id)
+        {
+            if (Id != null)
+            {
+                rentManager.Delete(rentManager.Get(Id));
+                return true;
+            }
+            return false;
+        }
+
     }
 }

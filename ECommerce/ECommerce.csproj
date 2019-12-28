@@ -281,6 +281,7 @@
     <Content Include="assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\fonts\fontawesome-webfont.woff" />
     <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Management\Views\Admin\rentCars.cshtml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -316,6 +317,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Management\Controllers\BrandController.cs" />
     <Compile Include="Areas\Management\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Management\Controllers\AdminController.cs" />
     <Compile Include="Areas\Management\Controllers\ModelController.cs" />
     <Compile Include="Areas\Management\Controllers\ProductController.cs" />
     <Compile Include="Areas\Management\Controllers\SubModelController.cs" />
@@ -387,6 +389,7 @@
     <Content Include="Views\Account\changePassword.cshtml" />
     <Content Include="Views\Account\MyWishList.cshtml" />
     <Content Include="Views\Default\newRent.cshtml" />
+    <Content Include="Views\Account\MyRents.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -396,7 +399,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Management\Views\Default\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
