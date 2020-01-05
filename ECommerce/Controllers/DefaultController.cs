@@ -59,8 +59,8 @@ namespace ECommerce.Controllers
             {
                 Product = choiceProduct,
                 productId=choiceProduct.Id,
-                rentStartDate = DateTime.Now,
-                rentEndDate = DateTime.Now
+                rentStartDate = DateTime.Now.Date,
+                rentEndDate = DateTime.Now.Date
                
             };
 
@@ -76,27 +76,47 @@ namespace ECommerce.Controllers
 
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("Login", "Customer");
-            // rent kaydetme
-            int customerId = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).customerId;
-            string email= customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
-            model.custId = customerId;
-            model.rentState = rentState.Beklemede;
-            rentManager.Save(model);
+               rentState checkRentState = ProductManager.Get(model.productId).state;
+            if (checkRentState == rentState.Uygun)
+             {
+                // rent kaydetme
+                int customerId = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).customerId;
+                string email = customerManager.GetAll().FirstOrDefault(x => x.email == User.Identity.Name).email;
+                model.custId = customerId;
+                model.rentState = rentState.Beklemede;
+                // arabanın durumunu beklemeye alacağız
+                Product car = ProductManager.Get(model.productId);
+                car.state = rentState.Beklemede;
+                ProductManager.Update(car);
+                //---------
+                rentManager.Save(model);
 
-            //email gönder
-            var url = "/Account/MyRents/";
-            Services.MailService.Link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
-            Services.MailService.title = "Öz kardeşler araba kiralama hizmeti";
-            Services.MailService.Subject = Services.MailService.title + " sitemizi seçtiğiniz için teşekkür ederiz ";
-            Services.MailService.Body = " Araba kiralama işleminin başarılı bir şekilde tamamlandı.";
-            Services.MailService.sendEmail(email);
-            status = true;
-            message = "Araba kiralama işleminin başarılı bir şekilde tamamlandı";
-            ViewBag.Status = status;
-            ViewBag.Message = message;
+                //email gönder
+                var url = "/Account/MyRents/";
+                Services.MailService.Link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
+                Services.MailService.title = "Öz kardeşler araba kiralama hizmeti";
+                Services.MailService.Subject = Services.MailService.title + " sitemizi seçtiğiniz için teşekkür ederiz ";
+                Services.MailService.Body = " Araba kiralama işleminin başarılı bir şekilde tamamlandı.";
+                Services.MailService.sendEmail(email);
+                status = true;
+                message = "Araba kiralama işleminin başarılı bir şekilde tamamlandı";
+                ViewBag.Status = status;
+                ViewBag.Message = message;
 
-            model.Product = ProductManager.Get(model.productId);
-            return View(model);
+                model.Product = ProductManager.Get(model.productId);
+                return View(model);
+            }
+            else
+            {
+                status = false;
+                message = "o tarihlerde uygun değil";
+                ViewBag.Status = status;
+                ViewBag.Message = message;
+
+                model.Product = ProductManager.Get(model.productId);
+                return View(model);
+            }
+          
         }
        
     }

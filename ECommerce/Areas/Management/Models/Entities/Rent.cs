@@ -10,7 +10,8 @@ namespace ECommerce.Areas.Management.Models.Entities
     {
         Beklemede,
         Onaylandı,
-        iptal
+        iptal,
+        Uygun
     }
 
     public class Rent

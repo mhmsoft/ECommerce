@@ -48,6 +48,7 @@ namespace ECommerce.Areas.Management.Controllers
                     }
                     
                 }
+                model.state = rentState.Uygun;
                 PR.Save(model);
                 return RedirectToAction("/");
             }
@@ -100,7 +101,7 @@ namespace ECommerce.Areas.Management.Controllers
                     var oldImage = PR.Get(id).image;
                     model.image = oldImage;
                 }
-
+                model.state = rentState.Uygun;
                 PR.Update(model);
                 return RedirectToAction("/");
             }

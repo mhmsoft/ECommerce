@@ -62,7 +62,9 @@ namespace ECommerce.Areas.Management.Models.Entities
         public int? categoryId { get; set; }
         public int? modelId { get; set; }
         public int? subModelId { get; set; }
-      
+        [Display(Name = "Kiralık Durumu")]
+        public rentState state { get; set; }
+
         public virtual Category Category { get; set; }
       
         public virtual Model  Model { get; set; }

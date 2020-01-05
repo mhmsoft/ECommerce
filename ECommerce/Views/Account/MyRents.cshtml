@@ -35,7 +35,8 @@
 
                     @foreach (var item in Model)
                     {
-                        <tr id="@item.Id">
+                        if (item.rentState == ECommerce.Areas.Management.Models.Entities.rentState.Onaylandı)
+                        { <tr id="@item.Id">
                             <td><input type="checkbox" class="checkthis" /></td>
                             <td><img style="width:100%;" src="data:image/png;base64,@Convert.ToBase64String(item.Product.image)" /></td>
                             <td>@Html.DisplayFor(model => item.Product.Brand.Name)</td>
@@ -59,7 +60,7 @@
                                     </button>
                                 </p>
                             </td>
-                        </tr>
+                        </tr>}
                     }
 
                 </tbody>

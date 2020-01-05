@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<ECommerce.Areas.Management.Models.Entities.Rent>
-
 @{
     ViewBag.Title = "rentCars";
     Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
 }
-
 <div class="col-md-12 compose">
     <div class="inbox-details-default">
-
         <div class="inbox-details-body">
             <table class="table">
                 <tr>
@@ -31,43 +28,41 @@
                     </th>
                     <th></th>
                 </tr>
-
                 @foreach (var item in Model)
                 {
-                <tr>
-                 
-                    <td><img style="width:100%;" src="data:image/png;base64,@Convert.ToBase64String(item.Product.image)" /></td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Customer.firstName)
-                        &nbsp;
-                        @Html.DisplayFor(model => item.Customer.lastName)
-                    </td>
-                    @{
-                        TimeSpan time = new TimeSpan();
-                        DateTime first = item.rentStartDate ?? DateTime.Now;
-                        DateTime second = item.rentEndDate ?? DateTime.Now;
-                        time = first - second;
-                    }
-                    <td>@(item.Product.dailyPrice * Convert.ToDecimal(Math.Abs(time.Days)))</td>
+                    <tr class="@(item.rentState==ECommerce.Areas.Management.Models.Entities.rentState.Onaylandı?"success":item.rentState==ECommerce.Areas.Management.Models.Entities.rentState.Beklemede?"warning":item.rentState==ECommerce.Areas.Management.Models.Entities.rentState.Uygun?"info":"danger")">
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.rentStartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.rentEndDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.rentState)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
-                </tr>
+                        <td style="width:20%"><img style="width:100%;" src="data:image/png;base64,@Convert.ToBase64String(item.Product.image)" /></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer.firstName)
+                            &nbsp;
+                            @Html.DisplayFor(model => item.Customer.lastName)
+                        </td>
+                        @{
+                            TimeSpan time = new TimeSpan();
+                            DateTime first = item.rentStartDate ?? DateTime.Now;
+                            DateTime second = item.rentEndDate ?? DateTime.Now;
+                            time = first - second;
+                        }
+                        <td>@(item.Product.dailyPrice * Convert.ToDecimal(Math.Abs(time.Days)))</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.rentStartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.rentEndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.rentState)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Onayla", "Ok", new { id = item.Id })
+                            @Html.ActionLink("Beklemede", "Suspend", new { id = item.Id })
+                            @Html.ActionLink("Teslim Al", "takeIt", new { id = item.Id })
+                            @Html.ActionLink("İptal", "Cancel", new { id = item.Id })
+                        </td>
+                    </tr>
                 }
-
             </table>
-            </div>
         </div>
     </div>
+</div>
