@@ -28,6 +28,7 @@
                 <th>@Html.DisplayName("Başlangıç")</th>
                 <th>@Html.DisplayName("Bitiş")</th>
                 <th>@Html.DisplayName("Tutar")</th>
+                <th>indirim</th>
                 <th>Sil</th>
             }
                 </thead>
@@ -37,30 +38,53 @@
                     {
                         if (item.rentState == ECommerce.Areas.Management.Models.Entities.rentState.Onaylandı)
                         { <tr id="@item.Id">
-                            <td><input type="checkbox" class="checkthis" /></td>
-                            <td><img style="width:100%;" src="data:image/png;base64,@Convert.ToBase64String(item.Product.image)" /></td>
-                            <td>@Html.DisplayFor(model => item.Product.Brand.Name)</td>
-                            <td>@Html.DisplayFor(model => item.Product.Model.Name)</td>
-                            <td>@Html.DisplayFor(model => item.Product.SubModel.Name)</td>
-                            <td>@Html.DisplayFor(model => item.Product.Name)</td>
-                            <td>@Html.DisplayFor(model => item.rentStartDate)</td>
-                            <td>@Html.DisplayFor(model => item.rentEndDate)</td>
-                            @{
-                                TimeSpan time = new TimeSpan();
-                                DateTime first = item.rentStartDate ?? DateTime.Now;
-                                DateTime second = item.rentEndDate ?? DateTime.Now;
-                                time = first - second;
-                            }
-                            <td>@(item.Product.dailyPrice * Convert.ToDecimal(Math.Abs(time.Days)))</td>
+    <td><input type="checkbox" class="checkthis" /></td>
+    <td><img style="width:100%;" src="data:image/png;base64,@Convert.ToBase64String(item.Product.image)" /></td>
+    <td>@Html.DisplayFor(model => item.Product.Brand.Name)</td>
+    <td>@Html.DisplayFor(model => item.Product.Model.Name)</td>
+    <td>@Html.DisplayFor(model => item.Product.SubModel.Name)</td>
+    <td>@Html.DisplayFor(model => item.Product.Name)</td>
+    <td>@Html.DisplayFor(model => item.rentStartDate)</td>
+    <td>@Html.DisplayFor(model => item.rentEndDate)</td>
+    @{
+        TimeSpan time = new TimeSpan();
+        DateTime first = item.rentStartDate ?? DateTime.Now;
+        DateTime second = item.rentEndDate ?? DateTime.Now;
+        time = first - second;
+        decimal discount = 0;
+        if (Convert.ToDecimal(Math.Abs(time.Days)) >= 1 && Convert.ToDecimal(Math.Abs(time.Days)) < 5)
+        {
+            //2-4 gün
+            discount = 0.05m;
 
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Sil">
-                                    <button id="deleteRent" data-id="@item.Id" data class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
-                                        <span class="fa fa-trash"></span>
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>}
+        }
+        else if (Convert.ToDecimal(Math.Abs(time.Days)) > 4 && Convert.ToDecimal(Math.Abs(time.Days)) < 10)
+        {
+            //5-9 gün
+            discount = 0.1m;
+        }
+        else if ((Convert.ToDecimal(Math.Abs(time.Days)) > 9 && Convert.ToDecimal(Math.Abs(time.Days)) < 15))
+        {
+            //10-14 gün
+            discount = 0.15m;
+        }
+        else
+        {
+            //15 günden sonra
+            discount = 0.2m;
+        }
+
+      }
+    <td>@string.Format("{0:F0}", (1 - (discount)) * item.Product.dailyPrice * Convert.ToDecimal(Math.Abs(time.Days)))</td>
+    <td>@(discount * 100) %</td>
+    <td>
+        <p data-placement="top" data-toggle="tooltip" title="Sil">
+            <button id="deleteRent" data-id="@item.Id" data class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
+                <span class="fa fa-trash"></span>
+            </button>
+        </p>
+    </td>
+</tr>}
                     }
 
                 </tbody>

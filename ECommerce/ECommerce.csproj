@@ -186,6 +186,9 @@
     <Content Include="assets\css\responsive.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\icon\greenIcon.png" />
+    <Content Include="assets\icon\redIcon.jfif" />
+    <Content Include="assets\icon\yellowIcon.jfif" />
     <Content Include="assets\img\404.png" />
     <Content Include="assets\img\article\arti-thumb-1.jpg" />
     <Content Include="assets\img\article\arti-thumb-2.jpg" />
@@ -390,6 +393,7 @@
     <Content Include="Views\Account\MyWishList.cshtml" />
     <Content Include="Views\Default\newRent.cshtml" />
     <Content Include="Views\Account\MyRents.cshtml" />
+    <Content Include="Views\Default\BestRents.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

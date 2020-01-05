@@ -75,47 +75,7 @@
                         <h3>Rental Tips</h3>
 
                         <div class="sidebar-body">
-                            <ul class="recent-tips">
-                                <li class="single-recent-tips">
-                                    <div class="recent-tip-thum">
-                                        <a href="#"><img src="assets/img/we-do/service1-img.png" alt="JSOFT"></a>
-                                    </div>
-                                    <div class="recent-tip-body">
-                                        <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
-                                        <span class="date">February 5, 2018</span>
-                                    </div>
-                                </li>
-
-                                <li class="single-recent-tips">
-                                    <div class="recent-tip-thum">
-                                        <a href="#"><img src="assets/img/we-do/service3-img.png" alt="JSOFT"></a>
-                                    </div>
-                                    <div class="recent-tip-body">
-                                        <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
-                                        <span class="date">February 5, 2018</span>
-                                    </div>
-                                </li>
-
-                                <li class="single-recent-tips">
-                                    <div class="recent-tip-thum">
-                                        <a href="#"><img src="assets/img/we-do/service2-img.png" alt="JSOFT"></a>
-                                    </div>
-                                    <div class="recent-tip-body">
-                                        <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
-                                        <span class="date">February 5, 2018</span>
-                                    </div>
-                                </li>
-
-                                <li class="single-recent-tips">
-                                    <div class="recent-tip-thum">
-                                        <a href="#"><img src="assets/img/we-do/service3-img.png" alt="JSOFT"></a>
-                                    </div>
-                                    <div class="recent-tip-body">
-                                        <h4><a href="#">How to Enjoy Losses Angeles Car Rentals</a></h4>
-                                        <span class="date">February 5, 2018</span>
-                                    </div>
-                                </li>
-                            </ul>
+                           @Html.Action("BestRents")
                         </div>
                     </div>
                     <!-- Single Sidebar End -->
@@ -200,7 +160,7 @@
                 <div class="page-pagi">
                     <nav aria-label="Page navigation example">
                         
-                            @Html.PagedListPager(Model, page => Url.Action("/", new { page }))
+                            @Html.PagedListPager(Model, page => Url.Action("/", new { page,brandId = ViewBag.brandId}))
                       
                     </nav>
                 </div>

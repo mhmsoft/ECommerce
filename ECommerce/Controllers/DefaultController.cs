@@ -16,6 +16,11 @@ namespace ECommerce.Controllers
         BrandRepository BrandManager = new BrandRepository(new Areas.Management.Models.Context.ApplicationDbContext());
         RentRepository rentManager = new RentRepository(new Areas.Management.Models.Context.ApplicationDbContext());
         CustomerRepository customerManager = new CustomerRepository(new Areas.Management.Models.Context.ApplicationDbContext());
+        public ActionResult BestRents()
+        {
+            return PartialView(rentManager.bestRents());
+        }
+
         public ActionResult Index(int?page,int?brandId)
         {                                                                                       
             int _page = page ?? 1;
@@ -23,6 +28,7 @@ namespace ECommerce.Controllers
             int _productPerPage = 2;
             var result = ProductManager.GetAll();
              ViewBag.Cars = BrandManager.GetAll();
+            ViewBag.brandId = brandId;
             // eğer brandId filtrelenmişse
             if (brandId!=null)
             {

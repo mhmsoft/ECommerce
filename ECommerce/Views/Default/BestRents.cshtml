@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ECommerce.Areas.Management.Models.Entities.Product>
+<ul class="recent-tips">
+    @foreach (var item in Model)
+    {
+        <li class="single-recent-tips">
+            <div class="recent-tip-thum">
+                <a href="@Url.Action("productDetail","Default",new {id=item.Id })"><img style="width:100%;height:100%;" src="data:image/png;base64,@Convert.ToBase64String(item.image)" /></a>
+            </div>
+            <div class="recent-tip-body">
+                <h4><a href="@Url.Action("productDetail","Default",new {id=item.Id })">@item.Name</a></h4>
+                <span class="date">@item.dailyPrice</span>
+            </div>
+        </li>
+    }
+
+
+
+
+
+</ul>

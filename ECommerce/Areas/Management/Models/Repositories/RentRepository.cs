@@ -17,6 +17,19 @@ namespace ECommerce.Areas.Management.Models.Repositories
             db = _db;
         }
 
+        public List<Product> bestRents()
+        {
+            List<Product> bests = new List<Product>();
+            var  data = db.Rent.GroupBy(fu => fu.productId)
+                        .Select(g => new { Id = g.Key, Count = g.Count() }).OrderByDescending(x=>x.Count);
+            ProductRepository productManager = new ProductRepository(new ApplicationDbContext());
+            foreach (var item in data.Take(5))
+            {
+                bests.Add( productManager.Get(item.Id));
+            }
+           
+            return bests;
+        }
         public void Delete(Rent entity)
         {
             db.Rent.Remove(entity);

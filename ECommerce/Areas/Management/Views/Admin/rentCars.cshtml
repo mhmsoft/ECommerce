@@ -17,6 +17,7 @@
                     <th>
                         @Html.DisplayName("Tutar")
                     </th>
+                    <th>İndirim(%)</th>
                     <th>
                         @Html.DisplayNameFor(model => model.rentStartDate)
                     </th>
@@ -43,8 +44,32 @@
                             DateTime first = item.rentStartDate ?? DateTime.Now;
                             DateTime second = item.rentEndDate ?? DateTime.Now;
                             time = first - second;
+                            decimal discount = 0;
+                            if (Convert.ToDecimal(Math.Abs(time.Days)) >= 1 && Convert.ToDecimal(Math.Abs(time.Days)) < 5)
+                            {
+                                //2-4 gün
+                                discount = 0.05m;
+
+                            }
+                            else if (Convert.ToDecimal(Math.Abs(time.Days)) > 4 && Convert.ToDecimal(Math.Abs(time.Days)) < 10)
+                            {
+                                //5-9 gün
+                                discount = 0.1m;
+                            }
+                            else if ((Convert.ToDecimal(Math.Abs(time.Days)) > 9 && Convert.ToDecimal(Math.Abs(time.Days)) < 15))
+                            {
+                                //10-14 gün
+                                discount = 0.15m;
+                            }
+                            else
+                            {
+                                //15 günden sonra
+                                discount = 0.2m;
+                            }
+
                         }
-                        <td>@(item.Product.dailyPrice * Convert.ToDecimal(Math.Abs(time.Days)))</td>
+                        <td>@string.Format("{0:F0}",(1 -(discount))*item.Product.dailyPrice * Convert.ToDecimal(Math.Abs(time.Days)))</td>
+                        <td>@(discount*100) %</td>
                         <td>
                             @Html.DisplayFor(modelItem => item.rentStartDate)
                         </td>

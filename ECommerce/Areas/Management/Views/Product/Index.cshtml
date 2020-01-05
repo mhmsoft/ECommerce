@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ECommerce.Areas.Management.Models.Entities.Product>
-
+@using ECommerce.Areas.Management.Models.Entities
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
@@ -16,6 +16,10 @@
 
             <table class="table table-hover">
                 <tr>
+                    <th> Durum </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.image)
+                    </th>
                     <th>
                         @Html.DisplayName("Marka")
                     </th>
@@ -37,21 +41,15 @@
                     <th>
                         @Html.DisplayNameFor(model => model.dailyPrice)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.discount)
-                    </th>
+
                     <th>
                         @Html.DisplayNameFor(model => model.autoModelYear)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.km)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.stock)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.image)
-                    </th>
+
+
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
@@ -61,6 +59,21 @@
                 @foreach (var item in Model)
                 {
                 <tr>
+                    <td style="width:3%">
+                        <img style="width:20%" src="@(item.state==rentState.Beklemede? "/assets/icon/yellowIcon.jfif":item.state==rentState.Uygun?"/assets/icon/greenIcon.png":"/assets/icon/redIcon.jfif")" />
+
+                    </td>
+
+                    <td>
+                        @if (item.image == null)
+                        {
+                            <img style="width:70px;height:60px;" src="~/Areas/Management/Assets/images/icon.png" />
+                        }
+                        else
+                        {
+                            <img style="width:70px;height:60px;" src="data:image;base64,@System.Convert.ToBase64String(item.image)" alt="@item.Name" />
+                        }
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Brand.Name)
                     </td>
@@ -83,28 +96,14 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.dailyPrice)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.discount)
-                    </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.autoModelYear)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.km)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.stock)
-                    </td>
-                    <td>
-                        @if (item.image == null)
-                        {
-                            <img style="width:70px;height:60px;" src="~/Areas/Management/Assets/images/icon.png" />
-                        }
-                        else
-                        {
-                            <img style="width:70px;height:60px;" src="data:image;base64,@System.Convert.ToBase64String(item.image)" alt="@item.Name" />
-                        }
-                    </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
